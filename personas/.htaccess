@@ -1,0 +1,6 @@
+# Turn on thr rewrite engine
+Options +FollowSymlinks
+RewriteEngine on
+
+# Request routing
+RewriteRule ^([a-zA-Z0-9_-]*)$ index.php?id=$1 [nc,qsa]

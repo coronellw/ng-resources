@@ -1,0 +1,21 @@
+<h2>{{title}}</h2>
+<p>{{description}}</p>
+<div class="row">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nombres</th>
+				<th>Apellidos</th>
+				<th>Observaciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="persona in personas">
+				<td>{{persona.nombres}}</td>
+				<td>{{persona.apellidos}}</td>
+				<td>{{persona.observacion}}</td>
+			</tr>
+		</tbody>
+	</table>
+	<button ng-click="loadPersonas()">Cargar lista</button>
+</div>

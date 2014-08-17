@@ -1,0 +1,19 @@
+<h2>{{title}}</h2>
+<div class="row">
+	<div class="col-md-6">
+		<input ng-model="id" type="number"><button ng-click="getPersona()">Buscar</button>
+	</div>
+	<div class="col-md-6">
+		<span class="col-md-6">
+			<label for="nombre">Nombres: </label>
+			<span id="nombres" ng-show="persona.nombres">{{persona.nombres}}</span>
+			<span ng-hide="persona.nombres">No encontrado</span>
+		</span>
+
+		<span class="col-md-6">
+			<label for="apellidos">Apellidos: </label>
+			<span id="apellidos" ng-show="persona.apellidos">{{persona.apellidos}}</span>
+			<span ng-hide="persona.apellidos">No encontrado</span>
+		</span>
+	</div>
+</div>
