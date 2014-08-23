@@ -7,31 +7,37 @@ app.controller('SidebarController', function($scope, Topics){
 	$scope.topics = Topics.allTopics;
 });
 
-app.controller('IndividualController', function($scope, People){
+app.controller('IndividualController', ['$scope', 'persona', 'People', function($scope, persona, People){
 	$scope.title = "Buscar una persona";
 	$scope.description = "Busca personas en una base de datos, soportada por un servicio restfull en php";
-	$scope.persona = {};
+	$scope.persona = persona;
 	$scope.id;
-
-	$scope.getPersona = function(){
-		People.get({id: $scope.id}).$promise.then(function(successResponse){
-			$scope.persona = successResponse.data;
-		}, function(errResponse){
-			console.log(errResponse);
-		});
+	$scope.buscarPersona = function(){
+		if ($scope.id) {
+			$scope.persona = {};
+			People.get({id: $scope.id}, function(person){
+				$scope.persona = person;
+			}, function(){
+				console.log("No se encontró ningun usuario con ese id");
+			});
+		}
 	};
-});
+}]);
 
-app.controller('GrupalController', function($scope, People){
+app.controller('GrupalController', ['$scope', 'personas', function($scope, personas){
 	$scope.title = "Buscar todos";
 	$scope.description = "Busca a todas las personas registradas en la base de datos, soportada por un servicio restfull en php";
-	$scope.personas = {};
+	$scope.personas = personas;
+}]);
 
-	$scope.loadPersonas = function(){
-		People.query().$promise.then(function(successResponse){
-			$scope.personas = successResponse.data;
-		}, function(errResponse){
-			console.log(errResponse);
-		});
+app.controller('CreateController',['$scope','persona', 'People', function($scope, persona, People){
+	$scope.title="Crear nueva persona";
+	$scope.description = "En esta página puede proporcionar los datos para crear una nueva persona en el sistema";
+	$scope.infromation = "";
+	$scope.persona = new People();
+	$scope.addPersona = function(){
+
+		People.save($scope.persona);
+		alert("Nombres: "+ $scope.persona.nombres + "\nApellidos: "+ $scope.persona.apellidos);
 	};
-});
+}]);

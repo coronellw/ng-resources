@@ -7,6 +7,7 @@
 				<th>Nombres</th>
 				<th>Apellidos</th>
 				<th>Observaciones</th>
+				<th>Opciones</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -14,8 +15,8 @@
 				<td>{{persona.nombres}}</td>
 				<td>{{persona.apellidos}}</td>
 				<td>{{persona.observacion}}</td>
+				<td><a ng-href="#/individual/{{persona.id}}">Ver</a></td>
 			</tr>
 		</tbody>
 	</table>
-	<button ng-click="loadPersonas()">Cargar lista</button>
 </div>

@@ -1,7 +1,7 @@
 <h2>{{title}}</h2>
 <div class="row">
 	<div class="col-md-6">
-		<input ng-model="id" type="number"><button ng-click="getPersona()">Buscar</button>
+		<input ng-model="id" type="number"><button ng-click="buscarPersona()">Buscar</button>
 	</div>
 	<div class="col-md-6">
 		<span class="col-md-6">
@@ -16,4 +16,8 @@
 			<span ng-hide="persona.apellidos">No encontrado</span>
 		</span>
 	</div>
+	<br class="clearfix">
+	<br class="clearfix">
+	<br class="clearfix">
+	<a href="#/personas/new" class="btn btn-primary">Crear nueva persona</a>
 </div>

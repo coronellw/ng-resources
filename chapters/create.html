@@ -1,0 +1,25 @@
+<form ng-submit="addPersona()" class="form-horizontal">
+	<div class="form-group">
+		<label for="nombres" class="col-md-4 control-label">Nombres:</label>
+		<div class="col-md-4">
+			<input 	id="nombres" 
+					type="text" 
+					class="form-control"
+					ng-model="persona.nombres">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="apellidos" class="col-md-4 control-label">Apellidos</label>
+		<div class="col-md-4">
+			<input 	id="apellidos" 
+					type="text"
+					class="form-control"
+					ng-model="persona.apellidos">
+		</div>
+	</div>
+	<div class="text-center">
+		<button class="btn btn-primary">Guardar</button>
+	</div>
+</form>
+{{information}}

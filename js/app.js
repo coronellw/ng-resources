@@ -6,12 +6,36 @@ function appRouteConfig($routeProvider){
 		controller: 'IndexController',
 		templateUrl: 'chapters/main.html'
 	})
+	.when('/personas/new',{
+		controller: 'CreateController',
+		resolve : {
+			persona: function(People){return new People();}
+		},
+		templateUrl: 'chapters/create.html'
+	})
 	.when('/individual',{
 		controller: 'IndividualController',
+		resolve : {
+			persona: function(){return {};}
+		},
+		templateUrl: 'chapters/individual.html'
+	})
+	.when('/individual/:personId',{
+		controller: 'IndividualController',
+		resolve : {
+			persona : function(PersonLoader){
+				return PersonLoader();
+			}
+		},
 		templateUrl: 'chapters/individual.html'
 	})
 	.when('/grupal',{
 		controller: 'GrupalController',
+		resolve : {
+			personas : function(PeopleLoader){
+				return PeopleLoader();
+			}
+		},
 		templateUrl: 'chapters/grupal.html'
 	})
 	.otherwise({

@@ -1,5 +1,5 @@
 <?php
-$hst = "localhost";
+$hst = "localhost:3306";
 $usrnm = "testuser";
 $psswrd = "testuser";
 $schm = "resources";
