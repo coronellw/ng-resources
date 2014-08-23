@@ -5,9 +5,9 @@ require '../Slim/Slim.php';
 
 $app = new \Slim\Slim();
 
-$app->get('/', 'getPersonas');
-$app->get('/:id', 'getPersona');
-$app->post('/', 'addPersona');
+$app->get("/personas", 'getPersonas');
+$app->get("/personas/:id", 'getPersona');
+$app->post("/personas", 'addPersona');
 
 $app->run();
 
@@ -49,19 +49,19 @@ function getPersonas() {
 
 function addPersona(){
 	global $link, $app;
-	$request = Slim::getInstance()->request();
+	$request = $app->request();
 	$wine = json_decode($request->getBody());
-	$query = "INSERT INTO personas(nombres, apellidos) VALUES (".$wine->nombres.", ".$wine->apellidos.")";
+	$response = array();
+	$query = "INSERT INTO personas(nombres, apellidos) VALUES ('".$wine->nombres."', '".$wine->apellidos."')";
 	$result = $link->query($query);
 	$id = mysqli_insert_id($link);
 
-	echo json_encode($wine);
-
 	if ($result && $id != 0) {
-		$response = $wine;
+		$response['nombres'] = $wine->nombres;
+		$response['apellidos'] = $wine->apellidos;
 		$response['id'] = $id;
 	}else{
-		$response['error'] = "No fue posible cargar el listado de personas";
+		$response['error'] = "No fue posible guardar esa persona";
 		$response['msg'] = mysqli_error($link);
 	}
 

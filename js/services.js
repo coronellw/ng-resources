@@ -9,7 +9,7 @@ app.factory('Topics', function(){
 });
 
 app.factory('People', ['$resource', function($resource){
-	return $resource('/personas/:id',{id: '@id'});
+	return $resource('/api/personas/:id',{id: '@id'});
 }]);
 
 app.factory('PeopleLoader', ['People','$q',

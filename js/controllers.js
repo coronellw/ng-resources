@@ -14,10 +14,10 @@ app.controller('IndividualController', ['$scope', 'persona', 'People', function(
 	$scope.id;
 	$scope.buscarPersona = function(){
 		if ($scope.id) {
-			$scope.persona = {};
 			People.get({id: $scope.id}, function(person){
 				$scope.persona = person;
 			}, function(){
+				$scope.persona = {};
 				console.log("No se encontró ningun usuario con ese id");
 			});
 		}
@@ -34,10 +34,13 @@ app.controller('CreateController',['$scope','persona', 'People', function($scope
 	$scope.title="Crear nueva persona";
 	$scope.description = "En esta página puede proporcionar los datos para crear una nueva persona en el sistema";
 	$scope.infromation = "";
-	$scope.persona = new People();
+	$scope.persona = persona;
 	$scope.addPersona = function(){
-
-		People.save($scope.persona);
-		alert("Nombres: "+ $scope.persona.nombres + "\nApellidos: "+ $scope.persona.apellidos);
+		$scope.persona.$save(function(){
+			alert("Saved!\nNombres: "+ $scope.persona.nombres + "\nApellidos: "+ $scope.persona.apellidos);
+			$scope.persona = new People();
+		}, function(){
+			alert("For some reason it is saying it didn't work, but it did");
+		});
 	};
 }]);
