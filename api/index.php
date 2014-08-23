@@ -8,6 +8,8 @@ $app = new \Slim\Slim();
 $app->get("/personas", 'getPersonas');
 $app->get("/personas/:id", 'getPersona');
 $app->post("/personas", 'addPersona');
+$app->post("/personas/:id", "updatePersona");
+$app->delete("/personas/:id", "deletePersona");
 
 $app->run();
 
@@ -50,15 +52,15 @@ function getPersonas() {
 function addPersona(){
 	global $link, $app;
 	$request = $app->request();
-	$wine = json_decode($request->getBody());
+	$person = json_decode($request->getBody());
 	$response = array();
-	$query = "INSERT INTO personas(nombres, apellidos) VALUES ('".$wine->nombres."', '".$wine->apellidos."')";
+	$query = "INSERT INTO personas(nombres, apellidos) VALUES ('".$person->nombres."', '".$person->apellidos."')";
 	$result = $link->query($query);
 	$id = mysqli_insert_id($link);
 
 	if ($result && $id != 0) {
-		$response['nombres'] = $wine->nombres;
-		$response['apellidos'] = $wine->apellidos;
+		$response['nombres'] = $person->nombres;
+		$response['apellidos'] = $person->apellidos;
 		$response['id'] = $id;
 	}else{
 		$response['error'] = "No fue posible guardar esa persona";
@@ -68,3 +70,41 @@ function addPersona(){
 	$app->response()->header("Content-Type", "application/json");
 	echo json_encode($response);
 };
+
+function updatePersona(){
+	global $link, $app;
+
+	$request = $app->request();
+	$person = json_decode($request->getBody());
+	$response = array();
+
+	$query = "UPDATE personas SET nombres='".$person->nombres."', apellidos='".$person->apellidos."' WHERE id=".$person->id;
+	$result = $link->query($query);
+
+	if ($result && mysqli_affected_rows($link)>0) {
+		$response['result'] = "ok";
+	}else{
+		$response['result'] = "fail";
+	}
+
+	$app->response()->header("Content-Type", "application/json");
+	echo json_encode($response);
+};
+
+function deletePersona($id){
+	global $link, $app;
+
+	$query = "DELETE FROM personas WHERE id=$id";
+	$result = $link->query($query);
+	$response = array();
+
+	if ($result && mysqli_affected_rows($link)>0) {
+		$response['result'] = "ok";
+	}else{
+		$response['result'] = "fail";
+		$response['query'] = $query;
+	}
+
+	$app->response()->header("Content-Type", "application/json");
+	echo json_encode($response);	
+}

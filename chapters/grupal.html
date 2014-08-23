@@ -15,7 +15,18 @@
 				<td>{{persona.nombres}}</td>
 				<td>{{persona.apellidos}}</td>
 				<td>{{persona.observacion}}</td>
-				<td><a ng-href="#/individual/{{persona.id}}">Ver</a></td>
+				<td>
+					<a ng-href="#/individual/{{persona.id}}" class="btn btn-info">
+						<span class="glyphicon glyphicon-eye-open"></span> Ver
+					</a>
+					<a ng-href="#/personas/update/{{persona.id}}" class="btn btn-warning">
+						<span class="glyphicon glyphicon-edit"></span> Editar
+						</a>
+					<a ng-href="#/grupal" ng-click="delete($index)" class="btn btn-danger">
+						<span class="glyphicon glyphicon-trash"></span> Borrar
+					</a>
+				</td>
+				
 			</tr>
 		</tbody>
 	</table>

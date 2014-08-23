@@ -28,19 +28,33 @@ app.controller('GrupalController', ['$scope', 'personas', function($scope, perso
 	$scope.title = "Buscar todos";
 	$scope.description = "Busca a todas las personas registradas en la base de datos, soportada por un servicio restfull en php";
 	$scope.personas = personas;
+	$scope.delete = function(indice){
+		var c = confirm("Esta seguro de borrar a esta persona?");
+		if (c) {
+			$scope.personas[indice].$remove(function(){
+				alert("User was removed from system");
+			});
+		}
+	}
 }]);
 
 app.controller('CreateController',['$scope','persona', 'People', function($scope, persona, People){
-	$scope.title="Crear nueva persona";
-	$scope.description = "En esta página puede proporcionar los datos para crear una nueva persona en el sistema";
-	$scope.infromation = "";
+	if (persona && persona.id) {
+		$scope.title="Editar persona";
+		$scope.description = "En esta página puede proporcionar los datos para actualizar la informacion una persona en el sistema";
+	}else{
+		$scope.title="Crear nueva persona";
+		$scope.description = "En esta página puede proporcionar los datos para crear una nueva persona en el sistema";
+	}
+	
+	$scope.information = "";
 	$scope.persona = persona;
-	$scope.addPersona = function(){
+	$scope.save = function(){
 		$scope.persona.$save(function(){
-			alert("Saved!\nNombres: "+ $scope.persona.nombres + "\nApellidos: "+ $scope.persona.apellidos);
+			$scope.information = "Saved!";
 			$scope.persona = new People();
 		}, function(){
-			alert("For some reason it is saying it didn't work, but it did");
+			$scope.information = "Fail to save person";
 		});
 	};
 }]);

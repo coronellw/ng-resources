@@ -2,8 +2,9 @@ app.factory('Topics', function(){
 	var topics = {};
 	topics.allTopics = [
 		{url:"/", name: "index"},
-		{url:"individual", name: "Búsqueda individual"},
-		{url:"grupal", name: "Búsqueda grupal"}
+		{url:"/personas/new", name: "Agregar persona"},
+		{url:"individual", name: "Buscar persona"},
+		{url:"grupal", name: "Listar personas"}
 	];
 	return topics;
 });

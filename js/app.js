@@ -6,10 +6,21 @@ function appRouteConfig($routeProvider){
 		controller: 'IndexController',
 		templateUrl: 'chapters/main.html'
 	})
+	.when('/personas/update/:personId',{
+		controller: 'CreateController',
+		resolve : {
+			persona: function(PersonLoader){
+				return PersonLoader();
+			}
+		},
+		templateUrl: 'chapters/create.html'
+	})
 	.when('/personas/new',{
 		controller: 'CreateController',
 		resolve : {
-			persona: function(People){return new People();}
+			persona: function(People){
+				return new People();
+			}
 		},
 		templateUrl: 'chapters/create.html'
 	})
