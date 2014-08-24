@@ -10,6 +10,7 @@ $app->get("/personas/:id", 'getPersona');
 $app->post("/personas", 'addPersona');
 $app->post("/personas/:id", "updatePersona");
 $app->delete("/personas/:id", "deletePersona");
+$app->get("/personas/:name/byName","getPersonaByName");
 
 $app->run();
 
@@ -54,7 +55,7 @@ function addPersona(){
 	$request = $app->request();
 	$person = json_decode($request->getBody());
 	$response = array();
-	$query = "INSERT INTO personas(nombres, apellidos) VALUES ('".$person->nombres."', '".$person->apellidos."')";
+	$query = "INSERT INTO personas(nombres, apellidos, observaciones) VALUES ('".$person->nombres."', '".$person->apellidos."','".$person->observaciones."')";
 	$result = $link->query($query);
 	$id = mysqli_insert_id($link);
 
@@ -78,7 +79,7 @@ function updatePersona(){
 	$person = json_decode($request->getBody());
 	$response = array();
 
-	$query = "UPDATE personas SET nombres='".$person->nombres."', apellidos='".$person->apellidos."' WHERE id=".$person->id;
+	$query = "UPDATE personas SET nombres='".$person->nombres."', apellidos='".$person->apellidos."', observaciones = '".$person->observaciones."' WHERE id=".$person->id;
 	$result = $link->query($query);
 
 	if ($result && mysqli_affected_rows($link)>0) {
@@ -107,4 +108,24 @@ function deletePersona($id){
 
 	$app->response()->header("Content-Type", "application/json");
 	echo json_encode($response);	
+}
+
+function getPersonaByName($name){
+	global $link, $app;
+
+	$query = "SELECT * FROM personas WHERE nombres LIKE '%$name%' OR apellidos LIKE '%$name%'";
+	$result = $link->query($query);
+	$response = array();
+
+	if ($result) {
+		while($r = mysqli_fetch_assoc($result)){
+			$response[] = $r;
+		}
+	}else{
+		$response['result']="fail";
+		$response['query'] = $query;
+	}
+
+	$app->response()->header("Content-Type", "application/json");
+	echo json_encode($response);
 }

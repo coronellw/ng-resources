@@ -1,23 +1,87 @@
 <h2>{{title}}</h2>
 <div class="row">
 	<div class="col-md-6">
-		<input ng-model="id" type="number"><button ng-click="buscarPersona()">Buscar</button>
+		<div class="col-md-12 form-group">
+			<span class="input-group">
+				<input ng-model="id" type="number" class="form-control" placeholder="Ingrese el id (solo numeros)">
+				<span class="input-group-btn">
+					<button class="btn btn-primary" ng-click="buscarPersona()">Por id</button>
+				</span>
+			</span>
+		</div>
+		
+		<div class="col-md-12 form-group">
+			<span class="input-group">
+				<input ng-model="name" type="text" class="form-control" placeholder="Nombre o apellidos">
+				<span class="input-group-btn">
+					<button class="btn btn-primary" ng-click="buscarPersonaPorNombre()">Por nombre</button>
+				</span>
+			</span>
+		</div>
+		<div class="col-md-12 form-group">
+			<a href="#/personas/new" class="btn btn-primary">Crear nueva persona</a>
+		</div>
 	</div>
-	<div class="col-md-6">
-		<span class="col-md-6">
-			<label for="nombre">Nombres: </label>
-			<span id="nombres" ng-show="persona.nombres">{{persona.nombres}}</span>
-			<span ng-hide="persona.nombres">No encontrado</span>
-		</span>
+	<div class="col-md-6" style="border-left: 1px solid gray">
+		<h3>Resultado</h3>
+		<span class="form-group">
+			<span class="col-md-6">
+				<label for="nombre">Nombres: </label>
+				<span id="nombres" ng-show="persona.nombres">{{persona.nombres}}</span>
+				<span ng-hide="persona.nombres">No encontrado</span>
+			</span>
 
-		<span class="col-md-6">
-			<label for="apellidos">Apellidos: </label>
-			<span id="apellidos" ng-show="persona.apellidos">{{persona.apellidos}}</span>
-			<span ng-hide="persona.apellidos">No encontrado</span>
+			<span class="col-md-6">
+				<label for="apellidos">Apellidos: </label>
+				<span id="apellidos" ng-show="persona.apellidos">{{persona.apellidos}}</span>
+				<span ng-hide="persona.apellidos">No encontrado</span>
+			</span>
+		</span>
+		<span class="form-group">
+			<label for="observaciones" class="col-md-6">Observaciones:</label>
+			<span id="observaciones" ng-show="persona.observaciones">{{persona.observaciones}}</span>
+			<span ng-hide="persona.observaciones">Sin observaciones</span>
+		</span>
+		<hr>
+		<span class="form-group">
+			<a class="btn btn-primary" 
+				ng-href="#/personas/update/{{persona.id}}"
+				ng-show="persona.id">Editar</a>
 		</span>
 	</div>
-	<br class="clearfix">
-	<br class="clearfix">
-	<br class="clearfix">
-	<a href="#/personas/new" class="btn btn-primary">Crear nueva persona</a>
 </div>
+
+<div class="modal fade" id="resultados">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+        <h4 class="modal-title">Resultados</h4>
+      </div>
+      <div class="modal-body">
+        <p>Se encontr&oacute; m&aacute;s de una concordancia en la b&uacute;squeda, seleccione el adecuado...</p>
+        <table class="table">
+        	<thead>
+        		<tr>
+	        		<th>Nombres</th>
+	        		<th>Apellidos</th>
+	        		<th>Opciones</th>
+	        	</tr>
+        	</thead>
+			<tbody>
+				<tr ng-repeat="person in personas">
+					<td>{{person.nombres}}</td>
+					<td>{{person.apellidos}}</td>
+					<td>
+						<a ng-href="" ng-click="setPersona(person)" class="btn btn-success" data-dismiss="modal">Seleccionar</a>
+					</td>
+				</tr>
+			</tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

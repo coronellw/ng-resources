@@ -1,33 +1,36 @@
 <h2>{{title}}</h2>
 <p>{{description}}</p>
 <div class="row">
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Nombres</th>
-				<th>Apellidos</th>
-				<th>Observaciones</th>
-				<th>Opciones</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="persona in personas">
-				<td>{{persona.nombres}}</td>
-				<td>{{persona.apellidos}}</td>
-				<td>{{persona.observacion}}</td>
-				<td>
-					<a ng-href="#/individual/{{persona.id}}" class="btn btn-info">
-						<span class="glyphicon glyphicon-eye-open"></span> Ver
-					</a>
-					<a ng-href="#/personas/update/{{persona.id}}" class="btn btn-warning">
-						<span class="glyphicon glyphicon-edit"></span> Editar
+	<div class="panel panel-default">
+		<div class="panel-heading"><strong>Listado de personas</strong></div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nombres</th>
+					<th>Apellidos</th>
+					<th>Observaciones</th>
+					<th>Opciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="persona in personas">
+					<td>{{persona.nombres}}</td>
+					<td>{{persona.apellidos}}</td>
+					<td>{{persona.observaciones}}</td>
+					<td>
+						<a ng-href="#/individual/{{persona.id}}" class="btn btn-info">
+							<span class="glyphicon glyphicon-eye-open"></span> Ver
 						</a>
-					<a ng-href="#/grupal" ng-click="delete($index)" class="btn btn-danger">
-						<span class="glyphicon glyphicon-trash"></span> Borrar
-					</a>
-				</td>
-				
-			</tr>
-		</tbody>
-	</table>
+						<a ng-href="#/personas/update/{{persona.id}}" class="btn btn-warning">
+							<span class="glyphicon glyphicon-edit"></span> Editar
+							</a>
+						<a ng-href="#/grupal" ng-click="delete($index)" class="btn btn-danger">
+							<span class="glyphicon glyphicon-trash"></span> Borrar
+						</a>
+					</td>
+					
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </div>

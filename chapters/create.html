@@ -13,12 +13,23 @@
 	</div>
 
 	<div class="form-group">
-		<label for="apellidos" class="col-md-4 control-label">Apellidos</label>
+		<label for="apellidos" class="col-md-4 control-label">Apellidos:</label>
 		<div class="col-md-4">
 			<input 	id="apellidos" 
 					type="text"
 					class="form-control"
 					ng-model="persona.apellidos">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label for="observaciones" class="col-md-4 control-label">Observaciones:</label>
+		<div class="col-md-4">
+			<textarea 	name="obs" 
+						class="form-control"
+						ng-model="persona.observaciones" 
+						id="observaciones"  
+						rows="5"></textarea>
 		</div>
 	</div>
 	<div class="text-center">

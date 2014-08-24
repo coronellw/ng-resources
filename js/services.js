@@ -10,7 +10,14 @@ app.factory('Topics', function(){
 });
 
 app.factory('People', ['$resource', function($resource){
-	return $resource('/api/personas/:id',{id: '@id'});
+	return $resource('/api/personas/:id',{id: '@id'}, {
+		byName: {
+			method: "GET",
+			params: {name: "@name"},
+			url: "/api/personas/:name/byName",
+			isArray: true
+		}
+	});
 }]);
 
 app.factory('PeopleLoader', ['People','$q',
