@@ -33,6 +33,7 @@ app.controller('GrupalController', ['$scope', 'personas', function($scope, perso
 		if (c) {
 			$scope.personas[indice].$remove(function(){
 				alert("User was removed from system");
+				$scope.personas.splice(indice, 1);
 			});
 		}
 	}
