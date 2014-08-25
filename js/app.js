@@ -18,8 +18,8 @@ function appRouteConfig($routeProvider){
 	.when('/personas/new',{
 		controller: 'CreateController',
 		resolve : {
-			persona: function(People){
-				return new People();
+			persona: function(API){
+				return new API.Personas();
 			}
 		},
 		templateUrl: 'chapters/create.html'
