@@ -24,7 +24,7 @@
 	</div>
 	<div class="col-md-6" style="border-left: 1px solid gray">
 		<h3>Resultado</h3>
-		<span class="form-group">
+		<div class="form-group">
 			<span class="col-md-6">
 				<label for="nombre">Nombres: </label>
 				<span id="nombres" ng-show="persona.nombres">{{persona.nombres}}</span>
@@ -36,17 +36,35 @@
 				<span id="apellidos" ng-show="persona.apellidos">{{persona.apellidos}}</span>
 				<span ng-hide="persona.apellidos">No encontrado</span>
 			</span>
-		</span>
-		<span class="form-group">
+		</div>
+		<div class="form-group">
 			<label for="observaciones" class="col-md-6">Observaciones:</label>
 			<span id="observaciones" ng-show="persona.observaciones">{{persona.observaciones}}</span>
 			<span ng-hide="persona.observaciones">Sin observaciones</span>
-		</span>
-		<hr>
+		</div>
+		
+		<div class="form-group">
+			<h3>Contactos</h3>
+			<span ng-repeat="contacto in persona.contactos">
+				<div class="row">
+					<span class="col-md-6">
+						<label class="col-md-6" for="numero">Número: </label>
+						<span class="col-md-6">{{contacto.numero}}</span>
+					</span>
+					
+					<span class="col-md-6">
+						<label class="col-md-6" for="numero">Tipo: </label>
+						<span class="col-md-6">{{contacto.tipoNombre}}</span>
+					</span>
+				</div>
+			</span>
+			<span ng-hide="persona.contactos.length>0">No se encontraron contactos</span>
+		</div>
+		<hr class="col-md-12">
 		<span class="form-group">
-			<a class="btn btn-primary" 
+			<a class="btn btn-warning pull-right" 
 				ng-href="#/personas/update/{{persona.id}}"
-				ng-show="persona.id">Editar</a>
+				ng-show="persona.id"><span class="glyphicon glyphicon-edit"></span> Editar</a>
 		</span>
 	</div>
 </div>

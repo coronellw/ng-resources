@@ -21,7 +21,19 @@ function getPersona($id){
     $response = array();
 
     if ($result && mysqli_num_rows($result)>0) {
-    	$response = mysqli_fetch_assoc($result);	
+    	$response = mysqli_fetch_assoc($result);
+    	$response['contactos'] = array();
+    	$q_contactos = "SELECT c.id, c.numero, c.tipo, tc.nombre AS 'tipoNombre' FROM contactos c LEFT OUTER JOIN tipos_contacto tc ON tc.id = c.tipo WHERE persona = $id";
+    	$r_contactos = $link->query($q_contactos);
+    	$response['q_contactos'] = $q_contactos;
+
+    	if ($r_contactos && mysqli_num_rows($r_contactos)>0) {
+    		$telefonos = array();
+    		while($c = mysqli_fetch_assoc($r_contactos)){
+    			$telefonos[] = $c;
+    		}
+    		$response['contactos'] = $telefonos;
+    	}
     } else{
     	$response['error'] = "No se pudo encontrar la persona buscada";
 		$response['msg'] = mysqli_error($link);
@@ -78,8 +90,12 @@ function updatePersona(){
 	$request = $app->request();
 	$person = json_decode($request->getBody());
 	$response = array();
+	$nombres = $link->real_escape_string($person->nombres);
+	$apellidos = $link->real_escape_string($person->apellidos);
+	$observaciones = $link->real_escape_string($person->observaciones);
 
-	$query = "UPDATE personas SET nombres='".$person->nombres."', apellidos='".$person->apellidos."', observaciones = '".$person->observaciones."' WHERE id=".$person->id;
+	$query = "UPDATE personas SET nombres='".$nombres."', apellidos='".$apellidos."', observaciones = '".$observaciones."' WHERE id=".$person->id;
+	$response['query']=$query;
 	$result = $link->query($query);
 
 	if ($result && mysqli_affected_rows($link)>0) {
