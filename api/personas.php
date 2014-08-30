@@ -3,27 +3,19 @@ include_once './personas.php';
 
 function getPersona($id){
 	global $link, $app;
-    $query = "SELECT * FROM personas WHERE id = $id";
-    $result = $link->query($query);
-    $response = array();
+	$response['result']="Not found";
 
-    if ($result && mysqli_num_rows($result)>0) {
-    	$response = mysqli_fetch_assoc($result);
-    	$response['contactos'] = array();
-    	$q_contactos = "SELECT c.id, c.numero, c.tipo, tc.nombre AS 'tipoNombre' FROM contactos c LEFT OUTER JOIN tipos_contacto tc ON tc.id = c.tipo WHERE persona = $id";
-    	$r_contactos = $link->query($q_contactos);
+	$stmt = $link->prepare("SELECT * FROM personas WHERE id = ?");
+	$stmt->bind_param('i',$id);
+	$stmt->execute();
+	$result = $stmt->get_result();
 
-    	if ($r_contactos && mysqli_num_rows($r_contactos)>0) {
-    		$telefonos = array();
-    		while($c = mysqli_fetch_assoc($r_contactos)){
-    			$telefonos[] = $c;
-    		}
-    		$response['contactos'] = $telefonos;
-    	}
-    } else{
-    	$response['error'] = "No se pudo encontrar la persona buscada";
-		$response['msg'] = mysqli_error($link);
-    }
+	while($result && $row = $result->fetch_assoc()){
+		$response=$row;
+	}
+
+	$stmt->free_result();
+	$stmt->close();
 
     $app->response()->header("Content-Type", "application/json");
     echo json_encode($response);
@@ -90,7 +82,7 @@ function updatePersona(){
 	$result = $link->query($query);
 
 	// Agregar contactos
-	$resposne['contactos_response']=agregarContactos($person->id, $person->contactos);
+	$response['contactos_response']=agregarContactos($person->id, $person->contactos);
 
 	if ($result && mysqli_affected_rows($link)>0) {
 		$response['result'] = "ok";

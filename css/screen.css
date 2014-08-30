@@ -1,0 +1,58 @@
+#messages {
+	position: fixed;
+	right: 20px;
+	top: 50px;
+	border-radius: 5px;
+	width: 30%;
+	z-index: 999;
+}
+
+.message {
+	opacity: 0.7;
+}
+
+.message:hover {
+	opacity: 1;
+}
+
+#messages .message-title {
+	border-bottom: 1px solid;
+	display: inline-block;
+	margin-bottom: 5px;
+	padding: 3px;
+}
+
+#messages .message-body {
+	border: 0;
+	display: inline-block;
+	margin: 0;
+	padding: 0 3px 3px 3px;
+}
+
+.message.ng-enter{
+	transition: 0.75s;
+	opacity: 0;
+}
+.message.ng-enter-active{
+	opacity: 0.7;
+}
+.message.ng-enter-stagger{
+	transition-delay:0.1s;
+}
+.message.ng-leave{
+	-moz-transition: 1s;
+	-webkit-transition: 1s;
+	transition: 1s;
+	position: absolute;
+	opacity: 0.7;
+	right: 20px;
+	width: 35%;
+}
+.message.ng-leave-active{
+	opacity:0;
+	right: 0px;
+	width: 1px;
+}
+.message.ng-leave-stagger{
+	transition:0.5s;
+}

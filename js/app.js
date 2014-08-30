@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngRoute','ngResource']);
+var app = angular.module('myApp', ['ngRoute','ngResource','ngSanitize','ngAnimate']);
 
 function appRouteConfig($routeProvider){
 	$routeProvider

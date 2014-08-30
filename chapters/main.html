@@ -42,3 +42,29 @@
 	<div class="panel-heading">Referencias<a href="#/#top" class="pull-right" title="Back to top"><i class="glyphicon glyphicon-arrow-up"></i></a></div>
 	<div class="panel-body">No se ha agregado ninguna referencia aún</div>
 </div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">Enviar un mensajes</div>
+	<div class="panel panel-body">
+		<div class="panel-group">
+			<label class="control-label" for="titulo">Título: </label>
+			<input id="titulo" type="text" class="form-control" ng-model="titulo">
+		</div>
+		<div class="panel-group">
+			<label for="msj" class="control-label">Mensaje: </label>
+			<input id="msj" type="text" ng-model="msg" class="form-control">
+		</div>
+		<div class="panel-group">
+			<label for="tipo" class="control-label">Tipo: </label>
+			<select name="tipo" id="tipo" ng-model="type" class="form-control">
+				<option value="success">Exitoso</option>
+				<option value="danger">Error</option>
+				<option value="warning">Advertencia</option>
+				<option value="info">Informacion</option>
+			</select>
+		</div>
+		<div class="row col-md-12">
+			<button ng-click="sendTestMsg()">Enviar</button>
+		</div>
+	</div>
+</div>
