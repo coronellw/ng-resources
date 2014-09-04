@@ -6,13 +6,8 @@
 	width: 30%;
 	z-index: 999;
 }
-
-.message {
-	opacity: 0.7;
-}
-
-.message:hover {
-	opacity: 1;
+#messages.ng-hide, #messages.ng-show{
+	transition:2s;
 }
 
 #messages .message-title {
@@ -28,31 +23,89 @@
 	margin: 0;
 	padding: 0 3px 3px 3px;
 }
+.message {
+	opacity: 0.7;
+}
+
+.message:hover {
+	opacity: 1;
+}
+
 
 .message.ng-enter{
-	transition: 0.75s;
+	transition: 0.75s ease-in-out all;
+	-webkit-transform: translateX(30%) rotate(180deg);
+	-moz-transform: translateX(30%) rotate(180deg);
+	-ms-transform: translateX(30%) rotate(180deg);
+	-o-transform: translateX(30%) rotate(180deg);
+	transform: translateX(30%) rotate(180deg);
 	opacity: 0;
 }
 .message.ng-enter-active{
+	-webkit-transform: translateX(0px) rotate(0deg);
+	-moz-transform: translateX(0px) rotate(0deg);
+	-ms-transform: translateX(0px) rotate(0deg);
+	-o-transform: translateX(0px) rotate(0deg);
+	transform: translateX(0px) rotate(0deg);
 	opacity: 0.7;
 }
 .message.ng-enter-stagger{
 	transition-delay:0.1s;
 }
 .message.ng-leave{
-	-moz-transition: 1s;
-	-webkit-transition: 1s;
-	transition: 1s;
-	position: absolute;
+	-webkit-transition: 1s linear all;
+	-moz-transition: 1s linear all;
+	-ms-transition: 1s linear all;
+	-o-transition: 1s linear all;
+	transition: 1s linear all;
+
+	-webkit-transform:  scale(1);
+	-moz-transform:  scale(1);
+	-ms-transform:  scale(1);
+	-o-transform:  scale(1);
+	transform:  scale(1);
+	
 	opacity: 0.7;
-	right: 20px;
-	width: 35%;
 }
 .message.ng-leave-active{
+	-webkit-transform: scale(0);
+	-moz-transform: scale(0);
+	-ms-transform: scale(0);
+	-o-transform: scale(0);
+	transform: scale(0);
 	opacity:0;
-	right: 0px;
-	width: 1px;
 }
 .message.ng-leave-stagger{
 	transition:0.5s;
+}
+
+.message.ng-move {
+	-webkit-transition: all 1s all;
+	-moz-transition: all 1s all;
+	-ms-transition: all 1s all;
+	-o-transition: all 1s all;
+	transition: all 1s all;
+	
+	-webkit-transform: translateY(150px);
+	-moz-transform: translateY(150px);
+	-ms-transform: translateY(150px);
+	-o-transform: translateY(150px);
+	transform: translateY(150px);
+}
+
+.message-ng-move-active {
+	position: relative;
+	-webkit-transform: translateY(0px);
+	-moz-transform: translateY(0px);
+	-ms-transform: translateY(0px);
+	-o-transform: translateY(0px);
+	transform: translateY(0px);
+}
+
+.straight {
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	transform: rotate(-45deg);
 }

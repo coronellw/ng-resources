@@ -184,20 +184,26 @@ app.controller('messageController',['$scope',function($scope){
 	};
 
 	$scope.$on('SystemMessage',function(event, message){
+		message.sticky = false;
 		message.autoRemove = function(){
-			message.timeout = setTimeout(function(){
-				var pos = $scope.messages.indexOf(message);
-				if (pos !== -1) {
-					$scope.$apply(function(){
-						$scope.messages.splice(pos,1);
-					});
-				}
-			},3000)
-		};
+			if (!message.sticky) {
+				message.timeout = setTimeout(function(){
+					var pos = $scope.messages.indexOf(message);
+					if (pos !== -1) {
+						$scope.$apply(function(){
+							$scope.messages.splice(pos,1);
+						});
+					}
+				},3000);
+			}
+		}
 		message.autoRemove();
 		message.stopRemove = function(){
 			clearTimeout(message.timeout);
 		};
+		message.toggleSticky = function(){
+			message.sticky = !message.sticky;
+		}
 		$scope.messages.push(message);
 	});
 }]);
