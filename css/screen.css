@@ -33,19 +33,17 @@
 
 
 .message.ng-enter{
+	-webkit-transition: 0.75s ease-in-out all; /* for opera only*/
 	transition: 0.75s ease-in-out all;
+	
 	-webkit-transform: translateX(30%) rotate(180deg);
-	-moz-transform: translateX(30%) rotate(180deg);
-	-ms-transform: translateX(30%) rotate(180deg);
-	-o-transform: translateX(30%) rotate(180deg);
+	-ms-transform: translateX(30%) rotate(180deg); /* IE 9 only*/
 	transform: translateX(30%) rotate(180deg);
 	opacity: 0;
 }
 .message.ng-enter-active{
 	-webkit-transform: translateX(0px) rotate(0deg);
-	-moz-transform: translateX(0px) rotate(0deg);
-	-ms-transform: translateX(0px) rotate(0deg);
-	-o-transform: translateX(0px) rotate(0deg);
+	-ms-transform: translateX(0px) rotate(0deg); /* IE 9 only*/
 	transform: translateX(0px) rotate(0deg);
 	opacity: 0.7;
 }
@@ -53,25 +51,18 @@
 	transition-delay:0.1s;
 }
 .message.ng-leave{
-	-webkit-transition: 1s linear all;
-	-moz-transition: 1s linear all;
-	-ms-transition: 1s linear all;
-	-o-transition: 1s linear all;
+	-webkit-transition: 1s linear all; /* opera */
 	transition: 1s linear all;
 
 	-webkit-transform:  scale(1);
-	-moz-transform:  scale(1);
 	-ms-transform:  scale(1);
-	-o-transform:  scale(1);
 	transform:  scale(1);
 	
 	opacity: 0.7;
 }
 .message.ng-leave-active{
 	-webkit-transform: scale(0);
-	-moz-transform: scale(0);
 	-ms-transform: scale(0);
-	-o-transform: scale(0);
 	transform: scale(0);
 	opacity:0;
 }
@@ -81,47 +72,31 @@
 
 .message.ng-move {
 	-webkit-transition: all 1s all;
-	-moz-transition: all 1s all;
-	-ms-transition: all 1s all;
-	-o-transition: all 1s all;
 	transition: all 1s all;
 	
 	-webkit-transform: translateY(150px);
-	-moz-transform: translateY(150px);
 	-ms-transform: translateY(150px);
-	-o-transform: translateY(150px);
 	transform: translateY(150px);
 }
 
 .message-ng-move-active {
 	position: relative;
 	-webkit-transform: translateY(0px);
-	-moz-transform: translateY(0px);
 	-ms-transform: translateY(0px);
-	-o-transform: translateY(0px);
 	transform: translateY(0px);
 }
 
 .transition {
 	-webkit-transition: all 1s;
-	-moz-transition: all 1s;
-	-ms-transition: all 1s;
-	-o-transition: all 1s;
 	transition: all 1s;
 }
 
 .pin {
 	-webkit-animation: pining 500ms linear 0s forwards;
-	-moz-animation: pining 500ms linear 0s forwards;
-	-ms-animation: pining 500ms linear 0s forwards;
-	-o-animation: pining 500ms linear 0s forwards;
 	animation: pining 500ms linear 0s forwards;
 }
 .unpin {
 	-webkit-animation: unpining 1s linear 0s forwards;
-	-moz-animation: unpining 1s linear 0s forwards;
-	-ms-animation: unpining 1s linear 0s forwards;
-	-o-animation: unpining 1s linear 0s forwards;
 	animation: unpining 1s linear 0s forwards;
 }
 
