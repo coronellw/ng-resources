@@ -102,10 +102,47 @@
 	transform: translateY(0px);
 }
 
-.straight {
-	-webkit-transform: rotate(-45deg);
-	-moz-transform: rotate(-45deg);
-	-ms-transform: rotate(-45deg);
-	-o-transform: rotate(-45deg);
-	transform: rotate(-45deg);
+.transition {
+	-webkit-transition: all 1s;
+	-moz-transition: all 1s;
+	-ms-transition: all 1s;
+	-o-transition: all 1s;
+	transition: all 1s;
+}
+
+.pin {
+	-webkit-animation: pining 500ms linear 0s forwards;
+	-moz-animation: pining 500ms linear 0s forwards;
+	-ms-animation: pining 500ms linear 0s forwards;
+	-o-animation: pining 500ms linear 0s forwards;
+	animation: pining 500ms linear 0s forwards;
+}
+.unpin {
+	-webkit-animation: unpining 1s linear 0s forwards;
+	-moz-animation: unpining 1s linear 0s forwards;
+	-ms-animation: unpining 1s linear 0s forwards;
+	-o-animation: unpining 1s linear 0s forwards;
+	animation: unpining 1s linear 0s forwards;
+}
+
+@-webkit-keyframes pining {
+	25% {-webkit-transform: rotate(-45deg);}
+	75% { -webkit-transform: translateY(-10px) rotate(-45deg);}
+	100% { -webkit-transform: translateY(0px) rotate(-45deg);}
+}
+
+@keyframes pining {
+	50% {transform: rotate(-45deg);}
+	75% {transform: translateY(-10px) rotate(-45deg);}
+	100% {transform: translateY(0px) rotate(-45deg);}
+}
+
+@-webkit-keyframes unpining {
+	50% {-webkit-transform: translateY(-10px) rotate(-45deg);}
+	100% {-webkit-transform: translateY(0px) rotate(0deg)}
+
+}
+@keyframes unpining {
+	50% {transform: translateY(-10px) rotate(-45deg);}
+	100% {transform: translateY(0px) rotate(0deg)}
 }
