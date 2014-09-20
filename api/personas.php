@@ -1,5 +1,5 @@
 <?php 
-include_once './personas.php';
+include_once './contactos.php';
 
 function getPersona($id){
 	global $link, $app;
@@ -12,6 +12,7 @@ function getPersona($id){
 
 	while($result && $row = $result->fetch_assoc()){
 		$response=$row;
+		$response['contactos']=getContactos($id);
 	}
 
 	$stmt->free_result();
@@ -123,6 +124,7 @@ function getPersonaByName($name){
 
 	if ($result) {
 		while($r = mysqli_fetch_assoc($result)){
+			$r['contactos'] = getContactos($r['id']);
 			$response[] = $r;
 		}
 	}else{

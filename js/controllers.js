@@ -159,7 +159,10 @@ app.controller('ContactoController',['$scope','$rootScope', 'API', function($sco
 	};
 
 	$scope.isEmpty = function(){
-		return $scope.persona.contactos.length == 0;
+		if ($scope.persona) {
+			return $scope.persona.contactos.length == 0;
+		}
+		return false;
 	}
 
 }]);

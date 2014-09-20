@@ -85,3 +85,18 @@ function deleteContacto($id){
 	$app->response()->header("Content-Type", "application/json");
 	echo json_encode($response);
 }
+
+function getContactos($id_user){
+	global $link;
+	$qcontacts = $link->prepare("SELECT c.numero, tc.nombre as tipoNombre FROM contactos c, tipos_contacto tc WHERE c.tipo = tc.id and persona = ?");
+	$qcontacts->bind_param('i',$id_user);
+	$qcontacts->execute();
+	$rcontacts = $qcontacts->get_result();
+	$allContacts = array();
+	while($rcontacts && $contact = $rcontacts->fetch_assoc()){
+		$allContacts[] = $contact;
+	}
+	$qcontacts->free_result();
+	$qcontacts->close();
+	return $allContacts;
+}
