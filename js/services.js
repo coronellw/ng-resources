@@ -1,15 +1,18 @@
-app.factory('Topics', function(){
+var service = angular.module('exampleService',['ngResource']);
+
+service.factory('Topics', function(){
 	var topics = {};
 	topics.allTopics = [
 		{url:"/", name: "index"},
 		{url:"/personas/new", name: "Agregar persona"},
 		{url:"individual", name: "Buscar persona"},
-		{url:"grupal", name: "Listar personas"}
+		{url:"grupal", name: "Listar personas"},
+		{url:"directives", name: "Cool stuffs"}
 	];
 	return topics;
 });
 
-app.factory('API', ['$resource', function($resource){
+service.factory('API', ['$resource', function($resource){
 	return {
 		Personas: $resource('/api/personas/:id',{id: '@id'}, {
 			byName: {
@@ -26,7 +29,7 @@ app.factory('API', ['$resource', function($resource){
 
 
 
-app.factory('PeopleLoader', ['API','$q',
+service.factory('PeopleLoader', ['API','$q',
 	function(API, $q){
 		return function(){
 			var delay = $q.defer();
@@ -39,7 +42,7 @@ app.factory('PeopleLoader', ['API','$q',
 		}
 	}]);
 
-app.factory('PersonLoader',['API','$q', '$route',
+service.factory('PersonLoader',['API','$q', '$route',
 	function(API, $q, $route){
 		return function(){
 			var delay = $q.defer();

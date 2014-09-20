@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngRoute','ngResource','ngSanitize','ngAnimate']);
+var app = angular.module('myApp', ['ngRoute','ngSanitize','ngAnimate','exampleService','wcgDirectives']);
 
 function appRouteConfig($routeProvider){
 	$routeProvider
@@ -48,6 +48,10 @@ function appRouteConfig($routeProvider){
 			}
 		},
 		templateUrl: 'chapters/grupal.html'
+	})
+	.when('/directives',{
+		controller: 'exampleCtrl',
+		templateUrl: 'chapters/directives.html'
 	})
 	.otherwise({
 		redirectTo: '/'

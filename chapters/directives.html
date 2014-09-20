@@ -1,0 +1,58 @@
+<h2>{{title}}</h2>
+
+<p>{{description}}</p>
+
+<div class="panel panel-default">
+	<div class="panel-heading">Enviar un mensaje de sistema</div>
+	<div class="panel panel-body">
+		<div class="panel-group">
+			<label class="control-label" for="titulo">Título: </label>
+			<input id="titulo" type="text" class="form-control" ng-model="titulo">
+		</div>
+		<div class="panel-group">
+			<label for="msj" class="control-label">Mensaje: </label>
+			<input id="msj" type="text" ng-model="msg" class="form-control">
+		</div>
+		<div class="panel-group">
+			<label for="tipo" class="control-label">Tipo: </label>
+			<select name="tipo" id="tipo" ng-model="type" class="form-control">
+				<option value="success">Exitoso</option>
+				<option value="danger">Error</option>
+				<option value="warning">Advertencia</option>
+				<option value="info">Informacion</option>
+			</select>
+		</div>
+		<div class="row col-md-12">
+			<button ng-click="sendTestMsg()">Enviar</button>
+		</div>
+	</div>
+</div>
+
+<div class="panel panel-default" ng-controller="exampleCtrl">
+	<div class="panel-heading">Ejemplo de una directiva que expande una division</div>
+	<div class="panel panel-body">
+		<span class="col-md-4"><data-wcg-expander class="expander" expander-title="{{etitle}}">{{etext}}</data-wcg-expander></span>
+		<span class="col-md-4"><data-wcg-expander class="expander" expander-title="I want to be expanded!">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?/data-wcg-expander></span>
+		<span class="col-md-4"><data-wcg-expander class="expander" expander-title="Expand me too!">Oops, I'm no longer hidden</data-wcg-expander></span>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<data-wcg-dialog>Esto no se remplaza aun {{modalMsg}}</data-wcg-dialog>
+	<div class="panel-heading">Ventana modal por directiva</div>
+	<div class="panel panel-body">
+		<div class="panel-group">
+			<label for="modalTitle" class="control-label">Titulo:</label>
+			<input id="modalTitle" type="text" class="form-control" ng-model="modalTitle">
+		</div>
+		<div class="panel-group">
+			<label for="modalMsg" class="control-label">Mesnaje: {{modalMsg}}</label>
+			<input id="modalMsg" type="text" class="form-control" ng-model="modalMsg	">
+		</div>
+		<div class="panel-group">
+			<label for="modalButton" class="control-label">Texto del boton:</label>
+			<input id="modalButton" type="text" class="form-control" ng-model="btnText">
+		</div>
+		<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#myModal">Show modal window</button>
+	</div>
+</div>

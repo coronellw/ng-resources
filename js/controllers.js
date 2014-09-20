@@ -1,13 +1,5 @@
 app.controller('IndexController', function($scope, $rootScope){
 	$scope.title = "Index";
-	$scope.msg = "";
-	$scope.type = "success";
-	$scope.sendTestMsg = function(){
-		
-		var testBody = "<strong>Este mensaje</strong> incluye html y <a href='#'>Esto</a> es un link"
-		var testMsg = {title:$scope.titulo, body: $scope.msg, type: $scope.type};
-		$rootScope.$broadcast('SystemMessage', testMsg);
-	};
 });
 
 app.controller('SidebarController', function($scope, Topics){
@@ -206,4 +198,17 @@ app.controller('messageController',['$scope',function($scope){
 		}
 		$scope.messages.push(message);
 	});
+}]);
+
+app.controller('exampleCtrl',['$scope', '$rootScope', function($scope, $rootScope){
+	$scope.title = "Ejemplos de directivas de angular JS"
+	$scope.description = "Algunas veces resulta util crear elementos con un template, que puedan ser reutilizados n-veces, angular ofrece la solucion de directivas";
+	$scope.etext = "Hello, I am being serve fromt he controller";
+	$scope.etitle = "Click me to exapnd";
+	$scope.msg = "";
+	$scope.type = "success";
+	$scope.sendTestMsg = function(){
+		var testMsg = {title:$scope.titulo, body: $scope.msg, type: $scope.type};
+		$rootScope.$broadcast('SystemMessage', testMsg);
+	};
 }]);
