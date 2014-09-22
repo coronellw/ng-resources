@@ -122,7 +122,7 @@ app.controller('ContactoController',['$scope','$rootScope', 'API', function($sco
 	});
 	$scope.addContacto = function(){
 		if ($scope.tipo && $scope.numero) {
-			var contacto = {tipoNombre: $scope.tipo.nombre, numero: $scope.numero, tipo: $scope.tipo.id};
+			var contacto = {tipo: $scope.tipo.nombre, numero: $scope.numero, id_tipo: $scope.tipo.id};
 			$scope.persona.contactos.push(contacto);
 			$scope.numero = "";
 		}else{
@@ -142,7 +142,7 @@ app.controller('ContactoController',['$scope','$rootScope', 'API', function($sco
 	};
 	$scope.removeContacto = function(indice){
 		var id = $scope.persona.contactos[indice].id;
-		if (id) {
+		if (id && id !== null) {
 			var c = confirm("Seguro que desea eliminar este contacto?");
 			if(c){
 				API.Contactos.remove({id: id}, function(){

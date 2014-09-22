@@ -55,6 +55,7 @@
 				<table ng-hide="isEmpty()" class="table">
 					<thead>
 						<tr>
+							<th>id</th>
 							<th>Numero</th>
 							<th>Tipo</th>
 							<th>Opciones</th>
@@ -62,8 +63,9 @@
 					</thead>
 					<tbody>
 						<tr ng-repeat="contacto in persona.contactos">
+							<td>{{contacto.id}}</td>
 							<td>{{contacto.numero}}</td>
-							<td>{{contacto.tipoNombre}}</td>
+							<td>{{contacto.tipo}}</td>
 							<td>
 								<a ng-click="removeContacto($index)" class="glyphicon glyphicon-minus-sign" title="Borrar este contacto"></a>
 							</td>

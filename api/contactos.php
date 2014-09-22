@@ -1,12 +1,10 @@
 <?php
 function getContacto($id){
 	global $link, $app;
-	$query = "SELECT * FROM contactos WHERE id = $id";
-    $result = $link->query($query);
     $response = array();
 
-    if ($result && mysqli_num_rows($result)>0) {
-    	$response = mysqli_fetch_assoc($result);
+    if ($id) {
+    	$response = getContactos($id);
     } else{
     	$response['error'] = "No se pudo encontrar la persona buscada";
 		$response['msg'] = mysqli_error($link);
@@ -88,7 +86,7 @@ function deleteContacto($id){
 
 function getContactos($id_user){
 	global $link;
-	$qcontacts = $link->prepare("SELECT c.numero, tc.nombre as tipoNombre FROM contactos c, tipos_contacto tc WHERE c.tipo = tc.id and persona = ?");
+	$qcontacts = $link->prepare("SELECT c.id, c.numero, tc.nombre as tipo FROM contactos c, tipos_contacto tc WHERE c.tipo = tc.id and persona = ?");
 	$qcontacts->bind_param('i',$id_user);
 	$qcontacts->execute();
 	$rcontacts = $qcontacts->get_result();

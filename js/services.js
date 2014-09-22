@@ -14,16 +14,16 @@ service.factory('Topics', function(){
 
 service.factory('API', ['$resource', function($resource){
 	return {
-		Personas: $resource('/api/personas/:id',{id: '@id'}, {
+		Personas: $resource('api/personas/:id',{id: '@id'}, {
 			byName: {
 				method: "GET",
 				params: {name: "@name"},
-				url: "/api/personas/:name/byName",
+				url: "api/personas/:name/byName",
 				isArray: true
 			}
 		}),
-		TiposContacto: $resource('/api/tiposContacto/:id',{id:'@id'}),
-		Contactos: $resource('/api/contactos/:id',{id:'@id'})
+		TiposContacto: $resource('api/tiposContacto/:id',{id:'@id'}),
+		Contactos: $resource('api/contactos/:id',{id:'@id'})
 	};
 }]);
 
