@@ -3,7 +3,7 @@ var myDirectives = angular.module('wcgDirectives',[]);
 myDirectives.directive('wcgDialog',[function(){
 	var defDialog = {
 		restrict: 'E',
-		templateUrl: '../partials/dialog.html',
+		templateUrl: 'partials/dialog.html',
 		replace: true
 	};
 
@@ -16,7 +16,7 @@ myDirectives.directive('wcgExpander',[function(){
 		replace: true,
 		transclude: true,
 		scope: {title: "@expanderTitle"},
-		templateUrl: '../partials/expander.html',
+		templateUrl: 'partials/expander.html',
 		link: function(scope, element, attrs){
 			scope.showMe = false;
 

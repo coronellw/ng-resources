@@ -123,6 +123,7 @@ app.controller('ContactoController',['$scope','$rootScope', 'API', function($sco
 	$scope.addContacto = function(){
 		if ($scope.tipo && $scope.numero) {
 			var contacto = {tipo: $scope.tipo.nombre, numero: $scope.numero, id_tipo: $scope.tipo.id};
+			
 			$scope.persona.contactos.push(contacto);
 			$scope.numero = "";
 		}else{
