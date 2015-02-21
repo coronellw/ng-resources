@@ -87,7 +87,7 @@ function deleteContacto($id){
 function getContactos($id_user){
 	global $link;
 	$qcontacts = $link->prepare("SELECT c.id, c.numero, tc.nombre as tipo FROM contactos c, tipos_contacto tc WHERE c.tipo = tc.id and persona = ?");
-	$qcontacts->bind_param('i',$id_user);
+	$qcontacts->bind_param('i',$id_user);	
 	$qcontacts->execute();
 	$rcontacts = $qcontacts->get_result();
 	$allContacts = array();
